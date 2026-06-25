@@ -720,6 +720,9 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 32px;
       margin-top: 8px;
+      list-style: none;
+      padding-left: 0;
+      margin-left: 0;
     }
 
     .how-step {
@@ -728,7 +731,9 @@
       padding: 32px 28px;
       position: relative;
       border: 1px solid rgba(91,183,176,0.12);
+      list-style: none;
     }
+    .how-step::marker { content: none; }
 
     .how-step-num {
       display: inline-flex;
@@ -1081,6 +1086,9 @@
     .privacy-section {
       background: var(--navy);
     }
+    .privacy-section .section-label { color: rgba(255,255,255,0.65); }
+    .privacy-section .section-heading { color: var(--white); }
+    .privacy-section .section-sub { color: rgba(255,255,255,0.78); }
 
     .privacy-grid {
       display: grid;
@@ -2175,7 +2183,7 @@
             <div class="privacy-big-icon">🔒</div>
             <div class="privacy-device-heading">Stays on your device</div>
             <p class="privacy-device-copy">
-              Children's names, routines and tasks are stored locally on your iPhone or iPad using standard iOS local storage. None of this information is transmitted to any server or seen by anyone else.
+              Children's names, routines and tasks are stored locally on your iPhone or iPad using standard iOS local storage. This information is not transmitted to us or stored on our servers.
             </p>
           </div>
 

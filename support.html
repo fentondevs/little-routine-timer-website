@@ -59,6 +59,7 @@
 
     .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
     .container-narrow { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .header-container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
     /* Header */
     .site-header {
@@ -70,14 +71,16 @@
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
+      height: 68px;
     }
     .nav-brand {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none;
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; flex-shrink: 0;
     }
-    .nav-logo { width: 36px; height: 36px; border-radius: 9px; overflow: hidden; box-shadow: var(--shadow-sm); }
-    .nav-name { font-size: 14px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
+    .nav-logo { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-sm); flex-shrink: 0; }
+    .nav-name { font-size: 15px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; line-height: 1.2; }
+    .nav-name span { display: block; font-size: 11px; font-weight: 500; color: var(--slate); letter-spacing: 0; }
+    @media (max-width: 480px) { .nav-name span { display: none; } }
     .back-link {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 14px; font-weight: 600; color: var(--teal);
@@ -266,11 +269,11 @@
 <body>
 
   <header class="site-header" role="banner">
-    <div class="container">
+    <div class="header-container">
       <div class="nav-inner">
         <a href="/" class="nav-brand" aria-label="Little Routine Timer — return to homepage">
           <div class="nav-logo" aria-hidden="true">
-            <svg width="36" height="36" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <svg width="40" height="40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
               <defs>
                 <linearGradient id="sp-navbg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stop-color="#5BB7B0"/>
@@ -285,7 +288,7 @@
               <path d="M139 154 L146.5 161.5 L159 147" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </div>
-          <span class="nav-name">Little Routine Timer</span>
+          <span class="nav-name">Little Routine Timer<span>Less nagging. Calmer routines.</span></span>
         </a>
         <a href="/" class="back-link">
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">

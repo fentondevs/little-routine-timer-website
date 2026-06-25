@@ -3,7 +3,6 @@
 A complete static website for the Little Routine Timer iOS app.
 Ready to deploy to Cloudflare Pages.
 
-> **Legal notice:** The Terms of Use (`terms.html`) are draft content and have not been reviewed or approved by a solicitor. Do not remove the draft warning until the terms have been reviewed.
 
 ---
 
@@ -18,6 +17,9 @@ Ready to deploy to Cloudflare Pages.
 | General contact | hello@littleroutinetimer.com |
 | Support contact | support@littleroutinetimer.com |
 | Privacy contact | privacy@littleroutinetimer.com |
+| Privacy Policy effective date | 25 June 2026 |
+| Terms of Use effective date | 25 June 2026 |
+| Sitemap last-modified date | 2026-06-25 |
 
 ---
 
@@ -28,7 +30,7 @@ little-routine-timer-website/
 ├── index.html              Homepage
 ├── privacy.html            Privacy Policy
 ├── support.html            Help & Support
-├── terms.html              Terms of Use (DRAFT — requires legal review)
+├── terms.html              Terms of Use (effective 25 June 2026)
 ├── 404.html                Custom 404 page
 ├── robots.txt              Search engine instructions
 ├── sitemap.xml             Sitemap for search engines
@@ -49,16 +51,16 @@ little-routine-timer-website/
 
 ## Remaining placeholders
 
-Only four placeholders remain. Everything else is confirmed and filled in.
+Only one placeholder remains in the website files.
 
 | Placeholder | Description | File |
 |---|---|---|
-| `[PRIVACY POLICY EFFECTIVE DATE]` | Date the policy comes into effect | privacy.html |
-| `[TERMS EFFECTIVE DATE]` | Date the terms come into effect | terms.html |
-| `[SITEMAP DATE]` | Deployment date in YYYY-MM-DD format | sitemap.xml |
-| `[APP STORE URL]` | App Store link once approved by Apple | index.html (5 locations — comments only) |
+| `[APP STORE URL]` | App Store link once approved by Apple | index.html (5 locations — in code comments only) |
 
-No postal address placeholder remains. No email placeholder remains. No domain placeholder remains.
+All other placeholders are resolved:
+- All dates confirmed (Privacy Policy: 25 June 2026; Terms: 25 June 2026; Sitemap: 2026-06-25)
+- Domain, emails, ownership all confirmed
+- No postal address placeholder remains
 
 ### Pricing
 
@@ -112,11 +114,12 @@ with:
 
 ## Cloudflare Pages deployment
 
-### Step 1 — Fill in remaining placeholders
-Before deploying, set:
-- `[PRIVACY POLICY EFFECTIVE DATE]` in `privacy.html`
-- `[TERMS EFFECTIVE DATE]` in `terms.html`
-- `[SITEMAP DATE]` in `sitemap.xml` (use deployment date in YYYY-MM-DD format)
+### Step 1 — Review remaining placeholders
+The only content still outstanding before launch is:
+- The App Store URL (filled in after Apple approval — see instructions above)
+- Pricing update (if the App Store price differs from the planned £1.99)
+
+All dates, emails, ownership details, and the Terms effective date are already set.
 
 ### Step 2 — Create a GitHub repository
 Create a new GitHub repository. Name it something like `little-routine-timer-website`.
@@ -208,29 +211,23 @@ To replace a CSS placeholder with a real screenshot, find the `<!-- PLACEHOLDER:
 
 ---
 
-## Terms of Use — legal review required
+## Terms of Use
 
-`terms.html` is draft content. A visible warning banner is shown at the top of the page. Do not remove it until the terms have been reviewed by a qualified solicitor.
+`terms.html` is the live Terms of Use page. The effective date is **25 June 2026**.
 
-Currently confirmed in the terms:
+Confirmed in the terms:
 - Owner and publisher: **Tom Fenton** ✅
 - Governing law: **England and Wales** ✅
 - Contact email: **hello@littleroutinetimer.com** ✅
-
-Still outstanding:
-- `[TERMS EFFECTIVE DATE]`
+- Effective date: **25 June 2026** ✅
 
 ---
 
 ## QA checklist — final checks before launch
 
 ### Content
-- [ ] `[PRIVACY POLICY EFFECTIVE DATE]` filled in
-- [ ] `[TERMS EFFECTIVE DATE]` filled in
-- [ ] `[SITEMAP DATE]` updated to deployment date
 - [ ] App Store URL inserted (see instructions above)
 - [ ] Pricing updated and "Planned launch price" note removed
-- [ ] Terms of Use reviewed by a solicitor and draft warning removed
 
 ### Links
 - [ ] All internal links work
@@ -242,7 +239,7 @@ Still outstanding:
 - [ ] Canonical URLs correct on all pages (`https://littleroutinetimer.com/...`)
 - [ ] Open Graph URLs correct on all pages
 - [ ] OG image loads correctly when URL is shared (test with a social media link debugger)
-- [ ] sitemap.xml date updated
+- [x] sitemap.xml date set to 2026-06-25
 
 ### Privacy
 - [ ] No analytics or tracking scripts (verify by viewing page source)
