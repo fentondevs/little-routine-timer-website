@@ -1,0 +1,5 @@
+# robots.txt — Little Routine Timer
+User-agent: *
+Allow: /
+
+Sitemap: https://littleroutinetimer.com/sitemap.xml

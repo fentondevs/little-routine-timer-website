@@ -1,0 +1,2573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Routine Timer | Calmer Family Routines</title>
+  <meta name="description" content="Little Routine Timer is a visual routine timer for families. Calmer mornings, calmer bedtimes — one step at a time. Morning routine app, bedtime routine app, routine timer for children aged 4–11.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Little Routine Timer | Calmer Family Routines">
+  <meta property="og:description" content="Less nagging. Calmer routines. A visual step-by-step routine timer for parents and children. No ads, no subscription, no account required.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://littleroutinetimer.com/">
+  <meta property="og:image" content="https://littleroutinetimer.com/assets/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Little Routine Timer | Calmer Family Routines">
+  <meta name="twitter:description" content="Less nagging. Calmer routines. A visual step-by-step routine timer for parents and children.">
+  <meta name="twitter:image" content="https://littleroutinetimer.com/assets/og-image.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://littleroutinetimer.com/">
+
+  <!-- Favicons — replace with final icon files in /assets/ -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Theme colour matches app teal -->
+  <meta name="theme-color" content="#5BB7B0">
+
+  <meta name="robots" content="index, follow">
+
+  <style>
+    /* =====================================================
+       DESIGN TOKENS — mirror the app exactly
+       ===================================================== */
+    :root {
+      --teal:         #5BB7B0;
+      --teal-light:   #7ECAC4;
+      --teal-dark:    #479B94;
+      --cream:        #FFF7EA;
+      --cream-dark:   #F5EDD8;
+      --navy:         #1F2D3D;
+      --navy-light:   #2D3F52;
+      --coral:        #FF9F8A;
+      --coral-light:  #FFBCAC;
+      --coral-dark:   #E8876E;
+      --dusky:        #596A9A;
+      --dusky-light:  #7080B0;
+      --dusky-dark:   #3D4E7A;
+      --green:        #8BCB88;
+      --green-dark:   #6CB369;
+      --yellow:       #FFC742;
+      --slate:        #6B7280;
+      --white:        #FFFFFF;
+
+      --shadow-sm: 0 2px 8px rgba(31,45,61,0.08);
+      --shadow-md: 0 4px 16px rgba(31,45,61,0.12);
+      --shadow-lg: 0 8px 32px rgba(31,45,61,0.18);
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+
+      --font: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      --transition: 0.2s ease;
+
+      --max-w: 1080px;
+      --section-pad: 96px;
+    }
+
+    /* =====================================================
+       RESET & BASE
+       ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font);
+      background: var(--cream);
+      color: var(--navy);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+
+    /* =====================================================
+       REDUCED MOTION
+       ===================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* =====================================================
+       FOCUS STATES — keyboard accessibility
+       ===================================================== */
+    :focus-visible {
+      outline: 3px solid var(--teal);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* =====================================================
+       UTILITY
+       ===================================================== */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* =====================================================
+       BUTTONS
+       ===================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all var(--transition);
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .btn:active { transform: scale(0.97); }
+    /* Pre-launch: non-clickable App Store CTA */
+    .btn[aria-disabled="true"],
+    .appstore-btn[aria-disabled="true"] {
+      pointer-events: none;
+      cursor: default;
+      user-select: none;
+    }
+    .btn[aria-disabled="true"]:active,
+    .appstore-btn[aria-disabled="true"]:active { transform: none; }
+
+    .btn-primary {
+      background: var(--teal);
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(91,183,176,0.4);
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      box-shadow: 0 6px 20px rgba(91,183,176,0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--teal);
+      border: 2px solid var(--teal);
+    }
+    .btn-ghost:hover {
+      background: rgba(91,183,176,0.08);
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--teal);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .btn-white:hover {
+      background: var(--cream);
+      transform: translateY(-1px);
+    }
+
+    .btn-lg {
+      padding: 18px 40px;
+      font-size: 17px;
+    }
+
+    /* =====================================================
+       NAVIGATION
+       ===================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255,247,234,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(91,183,176,0.15);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+
+    .nav-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+    .nav-name span {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--slate);
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--slate);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+    .nav-links a:hover {
+      color: var(--teal);
+      background: rgba(91,183,176,0.08);
+    }
+
+    .nav-cta {
+      /* App Store CTA button in nav */
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      color: var(--navy);
+    }
+    .nav-toggle:hover { background: rgba(91,183,176,0.08); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: var(--white);
+      border-top: 1px solid rgba(91,183,176,0.12);
+      padding: 16px 24px 24px;
+      gap: 4px;
+      box-shadow: var(--shadow-md);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      display: block;
+      padding: 12px 14px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+    .mobile-nav a:hover { background: rgba(91,183,176,0.08); color: var(--teal); }
+    .mobile-nav .btn { margin-top: 12px; width: 100%; justify-content: center; }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: flex; align-items: center; }
+    }
+
+    /* =====================================================
+       HERO SECTION
+       ===================================================== */
+    .hero {
+      background: linear-gradient(160deg, var(--teal) 0%, #3A9B94 38%, var(--dusky) 100%);
+      padding: 80px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative circles — mirrors app welcome screen aesthetic */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text {}
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.92);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 0.2px;
+    }
+
+    .hero-badge svg {
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+    }
+
+    .hero-headline {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1.5px;
+      line-height: 1.08;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      margin-bottom: 36px;
+      max-width: 460px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-see-how {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      padding: 8px 0;
+      transition: color var(--transition);
+    }
+    .hero-see-how:hover { color: var(--white); }
+    .hero-see-how svg { width: 16px; height: 16px; transition: transform var(--transition); }
+    .hero-see-how:hover svg { transform: translateX(3px); }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+    }
+    .hero-trust svg { width: 14px; height: 14px; color: var(--green); }
+
+    /* Device mock-up area */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    .device-frame {
+      background: var(--white);
+      border-radius: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.15);
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.4);
+      position: relative;
+    }
+
+    .device-frame.phone {
+      width: 180px;
+      height: 360px;
+      border-radius: 28px;
+    }
+
+    .device-frame.phone-sm {
+      width: 155px;
+      height: 310px;
+      border-radius: 24px;
+      margin-bottom: 24px;
+    }
+
+    /* Screenshot placeholders inside device frames */
+    .screen-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .screen-placeholder-icon {
+      font-size: 32px;
+      margin-bottom: 4px;
+    }
+
+    .screen-placeholder-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--slate);
+      line-height: 1.3;
+    }
+
+    /* Individual screen placeholder backgrounds */
+    .sp-morning {
+      background: linear-gradient(160deg, #E8F8F7 0%, #FFF7EA 100%);
+    }
+    .sp-bedtime {
+      background: linear-gradient(160deg, #EEF1FF 0%, #E8EBF7 100%);
+    }
+    .sp-parallel {
+      background: linear-gradient(160deg, #FFF0EC 0%, #FFF7EA 100%);
+    }
+    .sp-home {
+      background: linear-gradient(160deg, #F0FBF9 0%, #FFF7EA 100%);
+    }
+
+    /* Mini app screen illustration inside placeholder */
+    .mini-app-screen {
+      width: 100%;
+      height: 100%;
+      padding: 12px 10px;
+    }
+
+    .mini-header {
+      background: var(--teal);
+      border-radius: 8px 8px 0 0;
+      padding: 10px 12px;
+      margin: -10px -10px 8px;
+    }
+    .mini-header-text {
+      font-size: 9px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .mini-task-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 4px;
+      border-bottom: 1px solid rgba(91,183,176,0.1);
+    }
+    .mini-task-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .mini-task-text {
+      font-size: 8px;
+      color: var(--navy);
+      font-weight: 500;
+    }
+    .mini-timer {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--teal);
+    }
+    .mini-timer-label {
+      font-size: 7px;
+      color: var(--slate);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      .hero-sub { margin: 0 auto 36px; }
+      .hero-actions { justify-content: center; }
+      .hero-trust { justify-content: center; }
+      .hero-visual { justify-content: center; }
+      .device-frame.phone { width: 160px; height: 320px; }
+      .device-frame.phone-sm { width: 140px; height: 280px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: 60px 0 80px; }
+      .device-frame.phone { width: 140px; height: 280px; }
+      .device-frame.phone-sm { display: none; }
+    }
+
+    /* =====================================================
+       TRUST BAR
+       ===================================================== */
+    .trust-bar {
+      background: var(--white);
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(91,183,176,0.1);
+    }
+
+    .trust-items {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate);
+    }
+
+    .trust-item svg {
+      width: 16px; height: 16px;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* =====================================================
+       SECTION SHARED STYLES
+       ===================================================== */
+    .section {
+      padding: var(--section-pad) 0;
+    }
+
+    .section-alt {
+      background: var(--white);
+    }
+
+    .section-dark {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .section-teal {
+      background: linear-gradient(160deg, var(--teal) 0%, var(--teal-dark) 100%);
+      color: var(--white);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    .section-dark .section-label,
+    .section-teal .section-label {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .section-heading {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--slate);
+      line-height: 1.65;
+      max-width: 580px;
+    }
+
+    .section-dark .section-sub,
+    .section-teal .section-sub {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .section-intro {
+      max-width: 620px;
+      margin-bottom: 60px;
+    }
+
+    .section-intro-center {
+      text-align: center;
+      margin: 0 auto 60px;
+    }
+
+    /* =====================================================
+       PROBLEM / BENEFIT SECTION
+       ===================================================== */
+    .problem-benefit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .problem-side {}
+    .benefit-side {}
+
+    .pb-heading {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(91,183,176,0.15);
+    }
+
+    .pb-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .pb-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--navy);
+      line-height: 1.5;
+    }
+
+    .pb-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pb-icon.problem { background: rgba(255,159,138,0.15); color: var(--coral-dark); }
+    .pb-icon.benefit { background: rgba(139,203,136,0.15); color: var(--green-dark); }
+
+    .pb-icon svg { width: 14px; height: 14px; }
+
+    @media (max-width: 720px) {
+      .problem-benefit-grid { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    /* =====================================================
+       HOW IT WORKS
+       ===================================================== */
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 8px;
+    }
+
+    .how-step {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      position: relative;
+      border: 1px solid rgba(91,183,176,0.12);
+    }
+
+    .how-step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .how-step h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .how-step p {
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 720px) {
+      .how-steps { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    /* =====================================================
+       FEATURES GRID
+       ===================================================== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 24px 22px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(91,183,176,0.1);
+      transition: all var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(91,183,176,0.25);
+    }
+
+    .feature-icon {
+      width: 46px; height: 46px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .feature-icon.teal   { background: rgba(91,183,176,0.12); }
+    .feature-icon.coral  { background: rgba(255,159,138,0.12); }
+    .feature-icon.dusky  { background: rgba(89,106,154,0.12); }
+    .feature-icon.green  { background: rgba(139,203,136,0.12); }
+    .feature-icon.yellow { background: rgba(255,199,66,0.12); }
+
+    .feature-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.55;
+    }
+
+    /* Hero feature card — parallel routines */
+    .feature-card-hero {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--dusky) 100%);
+      color: var(--white);
+      grid-column: span 2;
+    }
+
+    @media (max-width: 600px) {
+      .feature-card-hero { grid-column: span 1; }
+    }
+
+    .feature-card-hero h3 {
+      color: var(--white);
+      font-size: 20px;
+    }
+
+    .feature-card-hero p {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+    }
+
+    .feature-hero-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    /* =====================================================
+       MULTI-CHILD SECTION
+       ===================================================== */
+    .multi-child-section {
+      background: var(--cream-dark);
+    }
+
+    .multi-child-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .multi-child-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .child-routine-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-left: 4px solid var(--teal);
+      transition: all var(--transition);
+    }
+
+    .child-routine-card.bedtime-card { border-left-color: var(--dusky); }
+
+    .child-avatar-circle {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .child-avatar-circle.mia { background: rgba(255,199,66,0.18); }
+    .child-avatar-circle.leo { background: rgba(91,183,176,0.18); }
+
+    .child-routine-info { flex: 1; }
+    .child-routine-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+    .child-routine-task { font-size: 12px; color: var(--slate); margin-top: 2px; }
+
+    .child-routine-timer {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--teal);
+    }
+
+    .child-routine-card.bedtime-card .child-routine-timer {
+      color: var(--dusky);
+    }
+
+    .running-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--green-dark);
+      background: rgba(139,203,136,0.15);
+      padding: 3px 8px;
+      border-radius: 50px;
+      margin-top: 4px;
+    }
+
+    .running-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.8); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .running-dot { animation: none; }
+    }
+
+    .multi-child-caption {
+      background: rgba(91,183,176,0.08);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--slate);
+      text-align: center;
+      border: 1px solid rgba(91,183,176,0.15);
+    }
+
+    .multi-child-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .multi-child-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--navy);
+      line-height: 1.5;
+    }
+
+    .check-icon {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(139,203,136,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .check-icon svg { width: 12px; height: 12px; color: var(--green-dark); }
+
+    @media (max-width: 720px) {
+      .multi-child-inner { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    /* =====================================================
+       MORNING & BEDTIME SECTION
+       ===================================================== */
+    .morning-bedtime-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .time-card {
+      border-radius: var(--radius-xl);
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .time-card.morning {
+      background: linear-gradient(145deg, #5BB7B0 0%, #3A9B94 100%);
+      color: var(--white);
+    }
+
+    .time-card.bedtime {
+      background: linear-gradient(145deg, #596A9A 0%, #3D4E7A 100%);
+      color: var(--white);
+    }
+
+    .time-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 50%;
+    }
+
+    .time-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.15);
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 20px;
+    }
+
+    .time-card h3 {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+
+    .task-list-visual {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    .task-list-visual li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .task-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .morning .task-dot { background: rgba(255,199,66,0.9); }
+    .bedtime .task-dot { background: rgba(255,188,172,0.9); }
+
+    .time-card-note {
+      margin-top: 24px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      position: relative;
+    }
+
+    @media (max-width: 680px) {
+      .morning-bedtime-grid { grid-template-columns: 1fr; }
+      .time-card { padding: 32px 28px; }
+    }
+
+    /* =====================================================
+       PRIVACY SECTION
+       ===================================================== */
+    .privacy-section {
+      background: var(--navy);
+    }
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .privacy-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .privacy-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+
+    .privacy-icon {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: rgba(91,183,176,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .privacy-icon svg { width: 13px; height: 13px; color: var(--teal-light); }
+
+    .privacy-device-visual {
+      background: var(--navy-light);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      text-align: center;
+      border: 1px solid rgba(91,183,176,0.15);
+    }
+
+    .privacy-big-icon {
+      font-size: 72px;
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+
+    .privacy-device-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .privacy-device-copy {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
+
+    .privacy-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 28px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--teal-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(91,183,176,0.3);
+      padding-bottom: 2px;
+      transition: all var(--transition);
+    }
+    .privacy-link:hover { color: var(--white); border-bottom-color: var(--white); }
+
+    @media (max-width: 720px) {
+      .privacy-grid { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    /* =====================================================
+       PRICING SECTION
+       ===================================================== */
+    .pricing-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      box-shadow: var(--shadow-lg);
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: center;
+      border: 2px solid rgba(91,183,176,0.15);
+      position: relative;
+    }
+
+    .pricing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(139,203,136,0.12);
+      color: var(--green-dark);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+
+    .pricing-price {
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .pricing-price sup {
+      font-size: 26px;
+      vertical-align: super;
+      letter-spacing: -1px;
+    }
+
+    .pricing-note {
+      font-size: 13px;
+      color: var(--slate);
+      margin-bottom: 32px;
+    }
+
+    /* UPDATE PRICING HERE when App Store price is confirmed */
+    .pricing-planned-note {
+      font-size: 12px;
+      color: var(--coral-dark);
+      background: rgba(255,159,138,0.1);
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      margin-bottom: 28px;
+    }
+
+    .pricing-includes {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pricing-includes li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .pricing-includes svg {
+      width: 16px; height: 16px;
+      color: var(--green-dark);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 560px) {
+      .pricing-card { padding: 36px 28px; }
+    }
+
+    /* =====================================================
+       FAQ
+       ===================================================== */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(91,183,176,0.12);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      text-align: left;
+      transition: background var(--transition);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .faq-question:hover { background: rgba(91,183,176,0.04); }
+
+    .faq-chevron {
+      width: 20px; height: 20px;
+      color: var(--teal);
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer { max-height: 400px; }
+
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 14px;
+      color: var(--slate);
+      line-height: 1.7;
+      border-top: 1px solid rgba(91,183,176,0.08);
+      padding-top: 16px;
+    }
+
+    /* =====================================================
+       FINAL CTA SECTION
+       ===================================================== */
+    .cta-section {
+      background: linear-gradient(160deg, var(--teal) 0%, #3A9B94 40%, var(--dusky) 100%);
+      padding: var(--section-pad) 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .cta-heading {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .cta-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto 36px;
+      position: relative;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .cta-trust {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      position: relative;
+    }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    .site-footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      padding: 48px 0 32px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+    }
+
+    .footer-brand {}
+    .footer-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .footer-logo {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .footer-brand-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .footer-col-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 14px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--teal-light); }
+
+    .footer-bottom {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-legal {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.5;
+    }
+
+    .footer-legal a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .footer-legal a:hover { color: var(--teal-light); }
+
+    @media (max-width: 720px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: span 2; }
+    }
+
+    @media (max-width: 440px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: span 1; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* =====================================================
+       APP STORE BUTTON
+       ===================================================== */
+    /*
+      When the official App Store badge is available from Apple:
+      https://developer.apple.com/app-store/marketing/guidelines/
+      Replace the .appstore-btn below with the official badge SVG/PNG.
+      Place the badge file at: assets/app-store-badge.svg or assets/app-store-badge.png
+      Set the href to [APP STORE URL] and update aria-label.
+    */
+    .appstore-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 12px;
+      padding: 12px 22px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      transition: all var(--transition);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .appstore-btn:hover {
+      background: #111827;
+      border-color: rgba(255,255,255,0.35);
+      transform: translateY(-1px);
+    }
+    .appstore-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .appstore-btn-text { text-align: left; line-height: 1.25; }
+    .appstore-btn-small { display: block; font-size: 9px; font-weight: 500; opacity: 0.7; letter-spacing: 0.3px; }
+    .appstore-btn-main { display: block; font-size: 14px; }
+
+    /* Hero variant — white background */
+    .appstore-btn-light {
+      background: var(--white);
+      color: var(--navy);
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .appstore-btn-light:hover {
+      background: var(--cream);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       SITE HEADER / NAVIGATION
+       ============================================================ -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Main navigation">
+
+        <!-- Brand -->
+        <a href="/" class="nav-brand" aria-label="Little Routine Timer — home">
+          <div class="nav-logo" aria-hidden="true">
+            <!-- App icon SVG — derived from embedded app-icon-export in app source -->
+            <svg width="40" height="40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="navbg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#5BB7B0"/>
+                  <stop offset="48%" stop-color="#4AA4A0"/>
+                  <stop offset="100%" stop-color="#596A9A"/>
+                </linearGradient>
+                <linearGradient id="navfc" x1="70" y1="48" x2="130" y2="162" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FFFFFF"/>
+                  <stop offset="100%" stop-color="#EEF8F7"/>
+                </linearGradient>
+              </defs>
+              <rect width="200" height="200" rx="44" fill="url(#navbg)"/>
+              <circle cx="35" cy="35" r="10.5" fill="#FFC742" opacity="0.95"/>
+              <path d="M170 16 A13 13 0 1 1 157 40 A8.5 8.5 0 1 0 170 16Z" fill="#FFF7EA" opacity="0.9"/>
+              <circle cx="100" cy="108" r="60" fill="rgba(20,38,60,0.13)"/>
+              <circle cx="100" cy="106" r="60" fill="url(#navfc)"/>
+              <circle cx="100" cy="106" r="60" fill="none" stroke="rgba(91,183,176,0.18)" stroke-width="2.5"/>
+              <line x1="100" y1="49" x2="100" y2="56" stroke="#1F2D3D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              <line x1="157" y1="106" x2="150" y2="106" stroke="#1F2D3D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              <line x1="100" y1="163" x2="100" y2="156" stroke="#1F2D3D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              <line x1="43" y1="106" x2="50" y2="106" stroke="#1F2D3D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              <circle cx="100" cy="106" r="6.5" fill="#5BB7B0"/>
+              <circle cx="100" cy="106" r="3" fill="white"/>
+              <circle cx="155" cy="162" r="23" fill="white"/>
+              <circle cx="155" cy="162" r="19" fill="#FF9F8A"/>
+              <path d="M145 162 L152.5 169.5 L165.5 154" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="nav-name">
+            Little Routine Timer
+            <span>Less nagging. Calmer routines.</span>
+          </div>
+        </a>
+
+        <!-- Desktop nav links -->
+        <ul class="nav-links" role="list">
+          <li><a href="/">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="support.html">Support</a></li>
+        </ul>
+
+        <!-- App Store CTA — pre-launch state. When the app is approved: -->
+        <!-- 1. Replace <span> with <a href="[APP STORE URL]" ...> -->
+        <!-- 2. Change text to "Download on the App Store" -->
+        <!-- 3. Remove aria-disabled -->
+        <span class="btn btn-primary nav-cta"
+              aria-disabled="true"
+              role="img"
+              aria-label="Coming soon to the App Store">
+          Coming soon to the App Store
+        </span>
+
+        <!-- Mobile hamburger -->
+        <button class="nav-toggle"
+                id="nav-toggle"
+                aria-expanded="false"
+                aria-controls="mobile-nav"
+                aria-label="Open navigation menu">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+            <line x1="3" y1="6" x2="19" y2="6"/>
+            <line x1="3" y1="11" x2="19" y2="11"/>
+            <line x1="3" y1="16" x2="19" y2="16"/>
+          </svg>
+        </button>
+
+      </nav>
+    </div>
+
+    <!-- Mobile nav drawer -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+      <a href="/">Home</a>
+      <a href="#features">Features</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+      <!-- App Store CTA — pre-launch. When approved: replace <span> with <a href="[APP STORE URL]">, change text to "Download on the App Store", remove aria-disabled -->
+      <span class="btn btn-primary" aria-disabled="true" role="img" aria-label="Coming soon to the App Store">
+        Coming soon to the App Store
+      </span>
+    </nav>
+  </header>
+
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-inner">
+
+          <div class="hero-text">
+            <div class="hero-badge" aria-hidden="true">
+              <!-- Small app icon inline -->
+              <svg width="14" height="14" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <rect width="200" height="200" rx="44" fill="rgba(255,255,255,0.3)"/>
+                <circle cx="100" cy="106" r="55" fill="white" opacity="0.9"/>
+                <circle cx="100" cy="106" r="6" fill="#5BB7B0"/>
+                <circle cx="100" cy="106" r="2.5" fill="white"/>
+                <circle cx="148" cy="154" r="20" fill="#FF9F8A"/>
+                <path d="M139 154 L146.5 161.5 L159 147" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+              For iPhone &amp; iPad
+            </div>
+
+            <h1 class="hero-headline" id="hero-heading">
+              Less nagging.<br>Calmer routines.
+            </h1>
+
+            <p class="hero-sub">
+              Little Routine Timer helps children move through mornings, bedtimes and everyday tasks one clear step at a time — so everyone can breathe a little easier.
+            </p>
+
+            <div class="hero-actions">
+              <!-- App Store CTA — pre-launch state. When the app is approved: -->
+              <!-- 1. Replace <span> with <a href="[APP STORE URL]" class="appstore-btn appstore-btn-light btn-lg"> -->
+              <!-- 2. Remove aria-disabled -->
+              <!-- 3. Change aria-label to "Download Little Routine Timer on the App Store" -->
+              <span class="appstore-btn appstore-btn-light btn-lg"
+                    aria-disabled="true"
+                    role="img"
+                    aria-label="Coming soon to the App Store">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                <span class="appstore-btn-text">
+                  <span class="appstore-btn-small">Coming soon to the</span>
+                  <span class="appstore-btn-main">App Store</span>
+                </span>
+              </span>
+
+              <a href="#how-it-works" class="hero-see-how" aria-label="See how Little Routine Timer works">
+                See how it works
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <line x1="3" y1="10" x2="17" y2="10"/>
+                  <polyline points="11 4 17 10 11 16"/>
+                </svg>
+              </a>
+            </div>
+
+            <p class="hero-trust" aria-label="No accounts, no ads, no subscriptions">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              No accounts. No ads. No subscriptions.
+            </p>
+          </div>
+
+          <!-- Device mock-ups -->
+          <!-- Replace .screen-placeholder divs with <img> tags once screenshots are ready -->
+          <!-- Paths: assets/home-screen.png, assets/active-routine.png -->
+          <div class="hero-visual" aria-hidden="true">
+            <div class="device-frame phone-sm">
+              <!-- PLACEHOLDER: replace with assets/active-routine.png -->
+              <div class="screen-placeholder sp-morning" role="img" aria-label="Placeholder for active routine screenshot — Morning Routine">
+                <div class="mini-app-screen">
+                  <div class="mini-header">
+                    <div class="mini-header-text">☀️ Morning Routine</div>
+                  </div>
+                  <div class="mini-task-item">
+                    <div class="mini-task-dot" style="background:#FFC742"></div>
+                    <div class="mini-task-text">Get dressed</div>
+                  </div>
+                  <div class="mini-task-item">
+                    <div class="mini-task-dot" style="background:#5BB7B0"></div>
+                    <div class="mini-task-text">Eat breakfast</div>
+                  </div>
+                  <div class="mini-task-item">
+                    <div class="mini-task-dot" style="background:#8BCB88"></div>
+                    <div class="mini-task-text">Brush teeth</div>
+                  </div>
+                  <div class="mini-timer">4:32</div>
+                  <div class="mini-timer-label">remaining</div>
+                </div>
+              </div>
+            </div>
+            <div class="device-frame phone">
+              <!-- PLACEHOLDER: replace with assets/home-screen.png -->
+              <div class="screen-placeholder sp-home" role="img" aria-label="Placeholder for app home screen screenshot">
+                <div class="mini-app-screen">
+                  <div class="mini-header" style="background: linear-gradient(135deg,#5BB7B0,#596A9A)">
+                    <div class="mini-header-text">🏠 Home</div>
+                  </div>
+                  <div style="padding-top:8px">
+                    <div class="mini-task-item" style="padding:8px 4px; border-radius:6px; background:rgba(91,183,176,0.06); margin-bottom:6px">
+                      <div class="mini-task-dot" style="background:#FFC742"></div>
+                      <div class="mini-task-text" style="font-size:9px">Morning Routine</div>
+                    </div>
+                    <div class="mini-task-item" style="padding:8px 4px; border-radius:6px; background:rgba(89,106,154,0.06)">
+                      <div class="mini-task-dot" style="background:#596A9A"></div>
+                      <div class="mini-task-text" style="font-size:9px">Bedtime Routine</div>
+                    </div>
+                  </div>
+                  <div class="mini-timer" style="font-size:16px; margin-top:12px">✨</div>
+                  <div class="mini-timer-label">Ready to start</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         TRUST BAR
+         ============================================================ -->
+    <div class="trust-bar" role="complementary" aria-label="Key facts about the app">
+      <div class="container">
+        <ul class="trust-items" role="list">
+          <li class="trust-item">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+            Private &amp; local storage
+          </li>
+          <li class="trust-item">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            One-time purchase
+          </li>
+          <li class="trust-item">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+            No subscription
+          </li>
+          <li class="trust-item">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm8-3a1 1 0 100 2 1 1 0 000-2zm1 4a1 1 0 10-2 0v3a1 1 0 002 0v-3z"/></svg>
+            Works offline
+          </li>
+          <li class="trust-item">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524L13.477 14.89zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/></svg>
+            No adverts
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <!-- ============================================================
+         PROBLEM / BENEFIT
+         ============================================================ -->
+    <section class="section section-alt" aria-labelledby="problem-heading">
+      <div class="container">
+        <div class="section-intro">
+          <p class="section-label">Why it helps</p>
+          <h2 class="section-heading" id="problem-heading">
+            Mornings don't have to be a battle.
+          </h2>
+          <p class="section-sub">
+            Most family mornings follow the same pattern. You remind. They forget. You remind again. Little Routine Timer gives children a clear sequence they can follow on their own.
+          </p>
+        </div>
+
+        <div class="problem-benefit-grid">
+          <div class="problem-side">
+            <h3 class="pb-heading">Sound familiar?</h3>
+            <ul class="pb-list" role="list">
+              <li>
+                <span class="pb-icon problem" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                </span>
+                Repeating the same reminders every single morning
+              </li>
+              <li>
+                <span class="pb-icon problem" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                </span>
+                Children losing track of what comes next
+              </li>
+              <li>
+                <span class="pb-icon problem" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                </span>
+                Different children needing different routines, different timing
+              </li>
+              <li>
+                <span class="pb-icon problem" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                </span>
+                Rushed mornings that start the day on the wrong note
+              </li>
+              <li>
+                <span class="pb-icon problem" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+                </span>
+                Bedtimes that drag on long past the first "five more minutes"
+              </li>
+            </ul>
+          </div>
+
+          <div class="benefit-side">
+            <h3 class="pb-heading">How Little Routine Timer helps</h3>
+            <ul class="pb-list" role="list">
+              <li>
+                <span class="pb-icon benefit" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                </span>
+                One task at a time — clear, visual, with a countdown
+              </li>
+              <li>
+                <span class="pb-icon benefit" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                </span>
+                Children can see exactly what comes next and follow independently
+              </li>
+              <li>
+                <span class="pb-icon benefit" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                </span>
+                Each child has their own tailored routine and child profile
+              </li>
+              <li>
+                <span class="pb-icon benefit" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                </span>
+                Two routines can run side by side — one per sibling
+              </li>
+              <li>
+                <span class="pb-icon benefit" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                </span>
+                Running Late mode helps when time is short
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         HOW IT WORKS
+         ============================================================ -->
+    <section class="section" id="how-it-works" aria-labelledby="how-heading">
+      <div class="container">
+        <div class="section-intro section-intro-center">
+          <p class="section-label" style="text-align:center">Getting started</p>
+          <h2 class="section-heading" id="how-heading">Up and running in minutes</h2>
+          <p class="section-sub" style="margin:0 auto">
+            No account to create, nothing to configure online. Just download, set up your family, and start.
+          </p>
+        </div>
+
+        <ol class="how-steps" aria-label="Three steps to get started">
+          <li class="how-step">
+            <div class="how-step-num" aria-hidden="true">1</div>
+            <h3>Add your children</h3>
+            <p>Create a profile for each child. Give them a name and choose a profile colour. Each profile is separate and private.</p>
+          </li>
+          <li class="how-step">
+            <div class="how-step-num" aria-hidden="true">2</div>
+            <h3>Build or customise a routine</h3>
+            <p>Choose from editable morning or bedtime templates, or build your own from scratch. Set each task and how long it should take.</p>
+          </li>
+          <li class="how-step">
+            <div class="how-step-num" aria-hidden="true">3</div>
+            <h3>Start the timer and follow each step</h3>
+            <p>Hand the device to your child. The app guides them through each task one at a time with a clear countdown. They mark each step done as they go.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         KEY FEATURES
+         ============================================================ -->
+    <section class="section section-alt" id="features" aria-labelledby="features-heading">
+      <div class="container">
+        <div class="section-intro section-intro-center">
+          <p class="section-label" style="text-align:center">Features</p>
+          <h2 class="section-heading" id="features-heading">Everything a family routine needs</h2>
+          <p class="section-sub" style="margin:0 auto">
+            Built for real families with real mornings. No bloat, no fuss — just the tools that make routines calmer.
+          </p>
+        </div>
+
+        <div class="features-grid">
+
+          <!-- Hero card: parallel routines -->
+          <div class="feature-card feature-card-hero" aria-label="Feature: Two children, two routines at once">
+            <div class="feature-hero-icon" aria-hidden="true">👨‍👩‍👧‍👦</div>
+            <h3>Two children. Two routines. One calmer home.</h3>
+            <p>Both children can follow their own routine at exactly the same time — independently, at their own pace. The biggest time-saver in a busy morning.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon teal" aria-hidden="true">☀️</div>
+            <h3>Morning routines</h3>
+            <p>Start the day with a clear, structured sequence. Children move through each step with a countdown, without needing reminders.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon dusky" aria-hidden="true">🌙</div>
+            <h3>Bedtime routines</h3>
+            <p>Wind down calmly. Calm Bedtime mode keeps the tone gentle for the end of the day.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon yellow" aria-hidden="true">✏️</div>
+            <h3>Custom routines</h3>
+            <p>Build any routine from scratch, or tweak a ready-made template. Add, remove and reorder tasks to match your family's needs.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon coral" aria-hidden="true">⚡</div>
+            <h3>Running Late mode</h3>
+            <p>When you're short on time, Running Late mode helps children move through the essentials more quickly. No panic, just pace.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon dusky" aria-hidden="true">🌛</div>
+            <h3>Calm Bedtime mode</h3>
+            <p>A gentler mode for bedtime routines that keeps the atmosphere quiet and unhurried as the day winds down.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon teal" aria-hidden="true">⏱️</div>
+            <h3>Quick Timer</h3>
+            <p>Need a one-off countdown? Quick Timer is always easy to reach from the app navigation — no routine setup required.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon green" aria-hidden="true">📋</div>
+            <h3>Editable templates</h3>
+            <p>Morning and bedtime templates give you a sensible starting point. Edit them to fit your household exactly.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon green" aria-hidden="true">📶</div>
+            <h3>Works offline</h3>
+            <p>No internet connection needed. Everything lives on your device. The app works just as well on aeroplane mode.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon yellow" aria-hidden="true">👶</div>
+            <h3>Multiple children</h3>
+            <p>Create a separate profile for each child. Each one can have their own routines and tasks, tailored just for them.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         MULTI-CHILD SECTION
+         ============================================================ -->
+    <section class="section multi-child-section" aria-labelledby="multi-heading">
+      <div class="container">
+        <div class="multi-child-inner">
+
+          <!-- Visual -->
+          <div class="multi-child-visual" aria-hidden="true">
+            <!-- PLACEHOLDER: replace with assets/parallel-routines.png when available -->
+            <!-- <img src="assets/parallel-routines.png" alt="Two routines running at the same time — one for Mia, one for Leo" width="480" loading="lazy"> -->
+
+            <div class="child-routine-card">
+              <div class="child-avatar-circle mia">🌸</div>
+              <div class="child-routine-info">
+                <div class="child-routine-name">Mia — Morning Routine</div>
+                <div class="child-routine-task">Currently: Brushing teeth</div>
+                <div class="running-badge">
+                  <span class="running-dot"></span>
+                  Running
+                </div>
+              </div>
+              <div class="child-routine-timer">2:14</div>
+            </div>
+
+            <div class="child-routine-card">
+              <div class="child-avatar-circle leo">🚀</div>
+              <div class="child-routine-info">
+                <div class="child-routine-name">Leo — Morning Routine</div>
+                <div class="child-routine-task">Currently: Getting dressed</div>
+                <div class="running-badge">
+                  <span class="running-dot"></span>
+                  Running
+                </div>
+              </div>
+              <div class="child-routine-timer">4:45</div>
+            </div>
+
+            <div class="multi-child-caption">
+              Two routines running independently — at the same time, on one device.
+            </div>
+          </div>
+
+          <!-- Copy -->
+          <div>
+            <p class="section-label">For families with more than one child</p>
+            <h2 class="section-heading" id="multi-heading">
+              Both routines. Same time. No chaos.
+            </h2>
+            <p class="section-sub">
+              Mia might start her routine at 7:00. Leo can start his at 7:15. Both can continue on their own, side by side.
+            </p>
+
+            <ul class="multi-child-points" role="list">
+              <li>
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                </span>
+                Each child follows their own routine at their own pace
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                </span>
+                You can return to the Home screen without stopping either routine
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                </span>
+                Each child has their own task and timer visible on screen
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                </span>
+                A maximum of two routines can run at the same time
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                </span>
+                The same child cannot be in two active routines at once
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         MORNING & BEDTIME SPLIT SECTION
+         ============================================================ -->
+    <section class="section" aria-labelledby="routines-heading">
+      <div class="container">
+        <div class="section-intro section-intro-center">
+          <p class="section-label" style="text-align:center">Routines</p>
+          <h2 class="section-heading" id="routines-heading">From first alarm to lights out</h2>
+          <p class="section-sub" style="margin:0 auto">
+            Templates for mornings and bedtimes are already built in — and fully editable to fit your family.
+          </p>
+        </div>
+
+        <div class="morning-bedtime-grid">
+          <div class="time-card morning">
+            <div class="time-card-badge" aria-label="Morning mode">☀️ Morning</div>
+            <h3>Calmer mornings</h3>
+            <ul class="task-list-visual" role="list" aria-label="Example morning routine tasks — these are suggestions, not requirements">
+              <li><span class="task-dot" aria-hidden="true"></span> Get dressed</li>
+              <li><span class="task-dot" aria-hidden="true"></span> Eat breakfast</li>
+              <li><span class="task-dot" aria-hidden="true"></span> Brush teeth</li>
+              <li><span class="task-dot" aria-hidden="true"></span> Shoes and bag</li>
+            </ul>
+            <p class="time-card-note">Routines are fully editable — tasks are just examples.</p>
+          </div>
+
+          <div class="time-card bedtime">
+            <div class="time-card-badge" aria-label="Calm Bedtime mode">🌙 Bedtime</div>
+            <h3>Calmer bedtimes</h3>
+            <ul class="task-list-visual" role="list" aria-label="Example bedtime routine tasks — these are suggestions, not requirements">
+              <li><span class="task-dot" aria-hidden="true"></span> Put on pyjamas</li>
+              <li><span class="task-dot" aria-hidden="true"></span> Brush teeth</li>
+              <li><span class="task-dot" aria-hidden="true"></span> Story time</li>
+              <li><span class="task-dot" aria-hidden="true"></span> Calm time</li>
+              <li><span class="task-dot" aria-hidden="true"></span> Lights out</li>
+            </ul>
+            <p class="time-card-note">Calm Bedtime mode keeps the atmosphere gentle.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         PRIVACY SECTION
+         ============================================================ -->
+    <section class="section privacy-section" aria-labelledby="privacy-heading">
+      <div class="container">
+        <div class="privacy-grid">
+
+          <div>
+            <p class="section-label">Privacy</p>
+            <h2 class="section-heading" id="privacy-heading">Private by design.</h2>
+            <p class="section-sub">
+              Your children's names and routines are stored only on your device. There's no account to create, nothing sent to a server, and we do not receive or access the information you enter into the app.
+            </p>
+
+            <ul class="privacy-points" role="list">
+              <li>
+                <span class="privacy-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+                </span>
+                No account required
+              </li>
+              <li>
+                <span class="privacy-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524L13.477 14.89zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/></svg>
+                </span>
+                No adverts, no tracking, no analytics
+              </li>
+              <li>
+                <span class="privacy-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm7-4a1 1 0 10-2 0v4a1 1 0 102 0V6zm1 8a1 1 0 100-2 1 1 0 000 2z"/></svg>
+                </span>
+                No cloud storage — nothing leaves the device
+              </li>
+              <li>
+                <span class="privacy-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                </span>
+                No third-party data collection
+              </li>
+              <li>
+                <span class="privacy-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="currentColor" focusable="false"><path fill-rule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg>
+                </span>
+                All data can be deleted using the Clear App Data option
+              </li>
+            </ul>
+
+            <a href="privacy.html" class="privacy-link">
+              Read the full Privacy Policy
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true" focusable="false">
+                <line x1="3" y1="10" x2="17" y2="10"/>
+                <polyline points="11 4 17 10 11 16"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="privacy-device-visual" aria-hidden="true">
+            <div class="privacy-big-icon">🔒</div>
+            <div class="privacy-device-heading">Stays on your device</div>
+            <p class="privacy-device-copy">
+              Children's names, routines and tasks are stored locally on your iPhone or iPad using standard iOS local storage. None of this information is transmitted to any server or seen by anyone else.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         PRICING
+         ============================================================ -->
+    <section class="section" aria-labelledby="pricing-heading">
+      <div class="container">
+        <div class="section-intro section-intro-center">
+          <p class="section-label" style="text-align:center">Pricing</p>
+          <h2 class="section-heading" id="pricing-heading">Pay once. Use for as long as you like.</h2>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-badge">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            One-time purchase
+          </div>
+
+          <!-- UPDATE PRICING HERE when App Store price is confirmed -->
+          <!-- Planned price: £1.99 — update this value after App Store approval -->
+          <div class="pricing-price"><sup>£</sup>1.99</div>
+          <p class="pricing-note">one-time purchase — no subscription</p>
+
+          <div class="pricing-planned-note">
+            Planned launch price — confirm on the App Store listing before purchasing.
+          </div>
+
+          <ul class="pricing-includes" role="list" aria-label="What's included">
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              All features included
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              No subscription, ever
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              No in-app purchases
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              No adverts
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              Works on iPhone and iPad
+            </li>
+          </ul>
+
+          <!-- App Store CTA — pre-launch. When approved: replace <span> with <a href="[APP STORE URL]">, remove aria-disabled, change text to "Download on the App Store" -->
+          <span class="btn btn-primary btn-lg"
+               style="width:100%; justify-content:center; cursor:default; opacity:0.85"
+               aria-disabled="true"
+               role="img"
+               aria-label="Coming soon to the App Store">
+            Coming soon to the App Store
+          </span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         FAQ
+         ============================================================ -->
+    <section class="section section-alt" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-intro section-intro-center">
+          <p class="section-label" style="text-align:center">Questions</p>
+          <h2 class="section-heading" id="faq-heading">Frequently asked questions</h2>
+        </div>
+
+        <div class="faq-list" role="list">
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-1">
+              What ages is Little Routine Timer for?
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-1" role="region" aria-label="Answer">
+              <div class="faq-answer-inner">
+                Little Routine Timer is designed for children aged approximately 4 to 11, and is operated by a parent or guardian. It works best for children who can follow visual instructions step by step — though every family is different and you'll know best what suits your child.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-2">
+              Can I create my own routines?
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-2" role="region" aria-label="Answer">
+              <div class="faq-answer-inner">
+                Yes. You can build a custom routine from scratch and add as many tasks as you need, each with its own duration. You can also start from the built-in morning or bedtime templates and edit them to suit your family.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-3">
+              Can two children use it at the same time?
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-3" role="region" aria-label="Answer">
+              <div class="faq-answer-inner">
+                Yes. Up to two routines can run at the same time, each belonging to a different child. Each child follows their own task and timer independently. The same child cannot be in two active routines at once.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-4">
+              Does it need an internet connection?
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-4" role="region" aria-label="Answer">
+              <div class="faq-answer-inner">
+                No. Little Routine Timer works entirely offline. Once downloaded, it works on aeroplane mode and requires no internet connection to use.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-5">
+              Is an account required?
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-5" role="region" aria-label="Answer">
+              <div class="faq-answer-inner">
+                No. Little Routine Timer does not require any account, sign-in or registration. You download the app and start using it immediately.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-6">
+              Is there a subscription?
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-6" role="region" aria-label="Answer">
+              <div class="faq-answer-inner">
+                No. Little Routine Timer is a one-time paid download. There is no subscription, no recurring charge and no in-app purchases.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-7">
+              Where is my family's information stored?
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-7" role="region" aria-label="Answer">
+              <div class="faq-answer-inner">
+                Everything is stored locally on your device. Children's names, routines and tasks remain in local storage on your iPhone or iPad. Nothing is sent to any external server. This information is not transmitted to us or stored on our servers.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-8">
+              Can I delete all app data?
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-8" role="region" aria-label="Answer">
+              <div class="faq-answer-inner">
+                Yes. You can clear all children, routines and tasks using the Clear App Data option in Settings. You can also remove all data by deleting the app from your device. There is no remote backup, so this cannot be undone.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-9">
+              Does it send notifications?
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-9" role="region" aria-label="Answer">
+              <div class="faq-answer-inner">
+                The current version of Little Routine Timer does not send push notifications. Routines and timers are managed entirely within the app.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item" role="listitem">
+            <button class="faq-question"
+                    aria-expanded="false"
+                    aria-controls="faq-10">
+              Is it available on Android?
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="faq-answer" id="faq-10" role="region" aria-label="Answer">
+              <div class="faq-answer-inner">
+                The initial release of Little Routine Timer is for iPhone and iPad only, via the App Store. There are no current plans to announce for Android.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         FINAL CTA
+         ============================================================ -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+      <div class="container">
+        <h2 class="cta-heading" id="cta-heading">
+          Calmer mornings.<br>Calmer bedtimes.
+        </h2>
+        <p class="cta-sub">
+          Give your children the structure they need to move through their day with confidence — and give yourself a few quieter minutes back.
+        </p>
+
+        <div class="cta-actions">
+          <!-- App Store CTA — pre-launch. When approved: replace <span> with <a href="[APP STORE URL]" class="appstore-btn btn-lg">, remove aria-disabled, change text to "Download on the App Store" -->
+          <span class="appstore-btn btn-lg"
+               style="cursor:default; opacity:0.85"
+               aria-disabled="true"
+               role="img"
+               aria-label="Coming soon to the App Store">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" width="22" height="22">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            <span class="appstore-btn-text">
+              <span class="appstore-btn-small">Coming soon to the</span>
+              <span class="appstore-btn-main">App Store</span>
+            </span>
+          </span>
+
+          <a href="support.html" class="btn btn-ghost" style="color:rgba(255,255,255,0.9); border-color:rgba(255,255,255,0.4);">
+            Visit support
+          </a>
+        </div>
+
+        <p class="cta-trust">No account needed &nbsp;·&nbsp; No subscription &nbsp;·&nbsp; Private by design</p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <div class="footer-logo-row">
+            <div class="footer-logo" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <defs>
+                  <linearGradient id="ftbg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#5BB7B0"/>
+                    <stop offset="48%" stop-color="#4AA4A0"/>
+                    <stop offset="100%" stop-color="#596A9A"/>
+                  </linearGradient>
+                </defs>
+                <rect width="200" height="200" rx="44" fill="url(#ftbg)"/>
+                <circle cx="100" cy="106" r="55" fill="rgba(255,255,255,0.9)"/>
+                <circle cx="100" cy="106" r="6.5" fill="#5BB7B0"/>
+                <circle cx="100" cy="106" r="3" fill="white"/>
+                <circle cx="148" cy="154" r="19" fill="#FF9F8A"/>
+                <path d="M139 154 L146.5 161.5 L159 147" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+            <span class="footer-brand-name">Little Routine Timer</span>
+          </div>
+          <p class="footer-tagline">
+            Less nagging. Calmer routines.<br>
+            A visual routine timer for families.
+          </p>
+          <p class="footer-tagline" style="margin-top:8px">
+            Made by Tom Fenton
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-col-heading">Pages</p>
+          <ul class="footer-links" role="list">
+            <li><a href="/">Home</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-col-heading">Contact</p>
+          <ul class="footer-links" role="list">
+            <li><a href="mailto:hello@littleroutinetimer.com">hello@littleroutinetimer.com</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-legal">
+          &copy; 2026 Tom Fenton. All rights reserved.
+          Little Routine Timer is not affiliated with, endorsed by, or sponsored by Apple Inc.
+        </p>
+        <p class="footer-legal">
+          <a href="privacy.html">Privacy Policy</a> &nbsp;&middot;&nbsp;
+          <a href="terms.html">Terms of Use</a> &nbsp;&middot;&nbsp;
+          <a href="support.html">Support</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT — mobile nav toggle + FAQ accordion
+       No external dependencies. No tracking. No analytics.
+       ============================================================ -->
+  <script>
+    // ----- Mobile navigation toggle -----
+    var navToggle = document.getElementById('nav-toggle');
+    var mobileNav = document.getElementById('mobile-nav');
+
+    if (navToggle && mobileNav) {
+      navToggle.addEventListener('click', function () {
+        var isOpen = mobileNav.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+
+      // Close mobile nav when a link inside it is clicked
+      mobileNav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileNav.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // ----- FAQ accordion -----
+    document.querySelectorAll('.faq-question').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.closest('.faq-item');
+        var isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(function (i) {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        // Open clicked (toggle)
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ----- Smooth scroll for anchor links -----
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

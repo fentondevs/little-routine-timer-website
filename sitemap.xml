@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  sitemap.xml — Little Routine Timer
+  [SITEMAP DATE]: replace with the deployment date in YYYY-MM-DD format
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://littleroutinetimer.com/</loc>
+    <lastmod>[SITEMAP DATE]</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://littleroutinetimer.com/privacy</loc>
+    <lastmod>[SITEMAP DATE]</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://littleroutinetimer.com/support</loc>
+    <lastmod>[SITEMAP DATE]</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://littleroutinetimer.com/terms</loc>
+    <lastmod>[SITEMAP DATE]</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support | Little Routine Timer</title>
+  <meta name="description" content="Support and help for Little Routine Timer. Learn how to set up routines, add children, use Quick Timer, and manage your app data.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Support | Little Routine Timer">
+  <meta property="og:description" content="Help and support for Little Routine Timer. Everything you need to get the most from the app.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://littleroutinetimer.com/support">
+
+  <link rel="canonical" href="https://littleroutinetimer.com/support">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#5BB7B0">
+  <meta name="robots" content="index, follow">
+
+  <style>
+    :root {
+      --teal:       #5BB7B0;
+      --teal-light: #7ECAC4;
+      --teal-dark:  #479B94;
+      --cream:      #FFF7EA;
+      --cream-dark: #F5EDD8;
+      --navy:       #1F2D3D;
+      --slate:      #6B7280;
+      --coral:      #FF9F8A;
+      --white:      #FFFFFF;
+      --shadow-sm:  0 2px 8px rgba(31,45,61,0.08);
+      --shadow-md:  0 4px 16px rgba(31,45,61,0.12);
+      --radius-sm:  10px;
+      --radius-md:  16px;
+      --radius-lg:  24px;
+      --font:       'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      --transition: 0.2s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--cream);
+      color: var(--navy);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .container-narrow { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .site-header {
+      background: rgba(255,247,234,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(91,183,176,0.15);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo { width: 36px; height: 36px; border-radius: 9px; overflow: hidden; box-shadow: var(--shadow-sm); }
+    .nav-name { font-size: 14px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--teal);
+      text-decoration: none; padding: 8px 14px;
+      border-radius: 8px; transition: background var(--transition);
+    }
+    .back-link:hover { background: rgba(91,183,176,0.08); }
+    .back-link svg { width: 14px; height: 14px; }
+
+    /* Page hero */
+    .page-hero {
+      background: linear-gradient(160deg, var(--teal) 0%, #3A9B94 50%, var(--navy) 100%);
+      padding: 64px 0;
+      text-align: center;
+    }
+    .page-hero h1 {
+      font-size: clamp(28px, 4vw, 42px); font-weight: 800;
+      color: var(--white); letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+    .page-hero p {
+      font-size: 16px; color: rgba(255,255,255,0.8);
+      max-width: 460px; margin: 0 auto; line-height: 1.6;
+    }
+    .page-hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.15);
+      padding: 5px 14px; border-radius: 50px;
+      font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 20px; letter-spacing: 0.3px;
+    }
+
+    /* Layout */
+    .support-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+      padding: 56px 0 80px;
+      align-items: start;
+    }
+
+    /* Sidebar nav */
+    .support-nav {
+      position: sticky;
+      top: 80px;
+    }
+    .support-nav-heading {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      color: var(--slate); margin-bottom: 10px;
+    }
+    .support-nav ul { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .support-nav a {
+      display: block; padding: 8px 12px;
+      font-size: 13px; font-weight: 500; color: var(--slate);
+      text-decoration: none; border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+    .support-nav a:hover { background: rgba(91,183,176,0.08); color: var(--teal); }
+
+    /* Main content */
+    .support-content section {
+      margin-bottom: 52px;
+    }
+    .support-content h2 {
+      font-size: 22px; font-weight: 700;
+      color: var(--navy); margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(91,183,176,0.2);
+    }
+    .support-content h3 {
+      font-size: 16px; font-weight: 700;
+      color: var(--navy); margin-top: 24px; margin-bottom: 8px;
+    }
+    .support-content p {
+      font-size: 15px; line-height: 1.75;
+      color: #374151; margin-bottom: 12px;
+    }
+    .support-content ol, .support-content ul {
+      padding-left: 0; margin-bottom: 14px;
+      list-style: none; display: flex; flex-direction: column; gap: 8px;
+    }
+    .support-content ol { counter-reset: support-counter; }
+    .support-content ol li {
+      font-size: 15px; line-height: 1.7; color: #374151;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .support-content ol li::before {
+      counter-increment: support-counter;
+      content: counter(support-counter);
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: white;
+      font-size: 12px; font-weight: 700;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .support-content ul li {
+      font-size: 15px; line-height: 1.7; color: #374151;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .support-content ul li::before {
+      content: '–'; color: var(--teal); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* Tip box */
+    .tip-box {
+      background: rgba(91,183,176,0.08);
+      border: 1px solid rgba(91,183,176,0.2);
+      border-radius: var(--radius-md);
+      padding: 16px 20px; margin: 16px 0;
+    }
+    .tip-box p { margin: 0; font-size: 14px; color: var(--navy); }
+    .tip-label {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.7px;
+      color: var(--teal); margin-bottom: 6px;
+    }
+
+    /* Warning box */
+    .warning-box {
+      background: rgba(255,159,138,0.1);
+      border: 1px solid rgba(255,159,138,0.3);
+      border-radius: var(--radius-md);
+      padding: 16px 20px; margin: 16px 0;
+    }
+    .warning-box p { margin: 0; font-size: 14px; color: #7A3D2D; }
+    .warning-label {
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.7px;
+      color: var(--coral); margin-bottom: 6px;
+    }
+
+    /* Contact section */
+    .contact-card {
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      text-align: center;
+      color: var(--white);
+      margin-top: 40px;
+    }
+    .contact-card h2 {
+      font-size: 22px; font-weight: 700;
+      color: var(--white);
+      border: none; padding-bottom: 0;
+      margin-bottom: 10px;
+    }
+    .contact-card p { color: rgba(255,255,255,0.85); margin-bottom: 20px; }
+    .contact-card a {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white); color: var(--teal);
+      padding: 12px 28px; border-radius: 50px;
+      font-size: 14px; font-weight: 700;
+      text-decoration: none; transition: all var(--transition);
+    }
+    .contact-card a:hover { background: var(--cream); transform: translateY(-1px); }
+
+    /* Back home */
+    .back-home-bar {
+      background: var(--white);
+      border-top: 1px solid rgba(91,183,176,0.12);
+      padding: 24px 0; text-align: center;
+    }
+    .back-home-bar a {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--teal);
+      text-decoration: none; padding: 10px 20px;
+      border-radius: 50px; border: 2px solid var(--teal);
+      transition: all var(--transition);
+    }
+    .back-home-bar a:hover { background: var(--teal); color: var(--white); }
+    .back-home-bar a svg { width: 14px; height: 14px; }
+
+    @media (max-width: 720px) {
+      .support-layout { grid-template-columns: 1fr; }
+      .support-nav { position: static; margin-bottom: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-brand" aria-label="Little Routine Timer — return to homepage">
+          <div class="nav-logo" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="sp-navbg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#5BB7B0"/>
+                  <stop offset="100%" stop-color="#596A9A"/>
+                </linearGradient>
+              </defs>
+              <rect width="200" height="200" rx="44" fill="url(#sp-navbg)"/>
+              <circle cx="100" cy="106" r="55" fill="rgba(255,255,255,0.9)"/>
+              <circle cx="100" cy="106" r="6.5" fill="#5BB7B0"/>
+              <circle cx="100" cy="106" r="3" fill="white"/>
+              <circle cx="148" cy="154" r="19" fill="#FF9F8A"/>
+              <path d="M139 154 L146.5 161.5 L159 147" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <span class="nav-name">Little Routine Timer</span>
+        </a>
+        <a href="/" class="back-link">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <line x1="17" y1="10" x2="3" y2="10"/>
+            <polyline points="9 16 3 10 9 4"/>
+          </svg>
+          Home
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="page-hero">
+      <div class="container">
+        <div class="page-hero-badge">💬 Support</div>
+        <h1>Help &amp; Support</h1>
+        <p>Everything you need to get started with Little Routine Timer and make the most of the app.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="support-layout">
+
+        <!-- Sidebar navigation -->
+        <nav class="support-nav" aria-label="Support sections">
+          <p class="support-nav-heading">On this page</p>
+          <ul>
+            <li><a href="#getting-started">Getting started</a></li>
+            <li><a href="#children">Adding children</a></li>
+            <li><a href="#routines">Creating routines</a></li>
+            <li><a href="#running">Running a routine</a></li>
+            <li><a href="#two-at-once">Two routines at once</a></li>
+            <li><a href="#quick-timer">Quick Timer</a></li>
+            <li><a href="#data">Your data</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+            <li><a href="#contact">Contact support</a></li>
+          </ul>
+        </nav>
+
+        <!-- Main content -->
+        <div class="support-content">
+
+          <!-- Getting started -->
+          <section id="getting-started" aria-labelledby="h-getting-started">
+            <h2 id="h-getting-started">Welcome to Little Routine Timer</h2>
+            <p>Thank you for downloading Little Routine Timer. This guide covers everything you need to set up your family's routines and get started. Everything is stored locally on your device — no account, no internet connection required.</p>
+            <p>When you first open the app, you'll see the Welcome screen. Tap <strong>Get Started</strong> to create your first child profile and begin.</p>
+          </section>
+
+          <!-- Adding children -->
+          <section id="children" aria-labelledby="h-children">
+            <h2 id="h-children">Adding children</h2>
+
+            <h3>How to add a child</h3>
+            <ol>
+              <li>Open <strong>Children</strong> or follow the first-time setup prompt.</li>
+              <li>Tap <strong>Add Child</strong>.</li>
+              <li>Enter the child's name.</li>
+              <li>Choose a profile colour.</li>
+              <li>Tap <strong>Add Child</strong> or <strong>Save Changes</strong>.</li>
+            </ol>
+            <p>Each child has their own separate profile. You can add as many children as you like. To edit a child's name or profile colour, tap their card in the Children screen.</p>
+
+            <div class="tip-box">
+              <p class="tip-label">💡 Tip</p>
+              <p>You do not need to use real names if you prefer not to. The name is only stored on your device.</p>
+            </div>
+          </section>
+
+          <!-- Routines -->
+          <section id="routines" aria-labelledby="h-routines">
+            <h2 id="h-routines">Creating and editing routines</h2>
+
+            <h3>How to create a routine</h3>
+            <ol>
+              <li>Go to the <strong>Routines</strong> screen.</li>
+              <li>Tap <strong>New Routine</strong>.</li>
+              <li>Choose to start from a template (morning or bedtime) or start from scratch.</li>
+              <li>Give the routine a name and assign it to a child.</li>
+              <li>Add tasks and set a duration for each task.</li>
+              <li>Tap <strong>Save</strong>.</li>
+            </ol>
+
+            <h3>Using templates</h3>
+            <p>The app includes editable morning and bedtime templates to give you a sensible starting point. Select a template when creating a new routine, then add, remove or reorder tasks to match your family's needs. Templates are a starting point only — the tasks are suggestions.</p>
+
+            <h3>Editing a routine</h3>
+            <p>To edit an existing routine, find it in the Routines screen and tap it. You can change the name, tasks, task durations, and assigned child. Tap <strong>Save</strong> to apply your changes.</p>
+
+            <h3>Editing or deleting a task</h3>
+            <p>Within the routine editor, tap any task to open the task editor. You can change the task name and duration, or delete the task. Tap <strong>Save</strong> to apply changes, or <strong>Delete</strong> to remove the task.</p>
+          </section>
+
+          <!-- Running a routine -->
+          <section id="running" aria-labelledby="h-running">
+            <h2 id="h-running">Running a routine</h2>
+
+            <h3>How to start a routine</h3>
+            <ol>
+              <li>From the Home screen, find the routine you want to start.</li>
+              <li>Tap <strong>Start</strong>.</li>
+              <li>The active routine screen opens with the first task and its countdown timer.</li>
+            </ol>
+
+            <h3>Returning Home while a routine continues</h3>
+            <p>You can return to the Home screen at any time without stopping the active routine. Tap the <strong>Home</strong> button during a running routine. The timer continues in the background. You can return to the active routine from the Home screen.</p>
+
+            <h3>Pausing a routine</h3>
+            <p>Tap the <strong>Pause</strong> button to pause the current task timer. Tap it again to resume.</p>
+
+            <h3>Adding two minutes</h3>
+            <p>If a child needs a little more time on a task, tap <strong>+ 2 min</strong> to add two minutes to the current countdown.</p>
+
+            <h3>Skipping a task</h3>
+            <p>Tap <strong>Skip</strong> to move on to the next task without marking the current one as done.</p>
+
+            <h3>Completing a task</h3>
+            <p>Tap <strong>Done</strong> (or the task's completion button) to mark the current task complete and move to the next one.</p>
+
+            <h3>Stopping a routine</h3>
+            <ol>
+              <li>Tap the exit or stop button while a routine is active.</li>
+              <li>A confirmation prompt will appear.</li>
+              <li>Confirm to stop the routine. The routine is not deleted — it can be started again at any time.</li>
+            </ol>
+
+            <h3>Running Late mode</h3>
+            <p>Running Late mode is available when starting a routine. It adjusts the routine to help children move through the essential steps more quickly when time is short.</p>
+
+            <h3>Calm Bedtime mode</h3>
+            <p>Calm Bedtime mode is available for bedtime routines. It maintains a calmer atmosphere and pace, suitable for winding down at the end of the day.</p>
+          </section>
+
+          <!-- Two routines at once -->
+          <section id="two-at-once" aria-labelledby="h-two-at-once">
+            <h2 id="h-two-at-once">Running two routines at the same time</h2>
+
+            <h3>Starting a second routine</h3>
+            <p>While one routine is already running, return to the Home screen (the first routine continues). From Home, start a second routine for a different child. Both routines will now run in parallel.</p>
+
+            <div class="tip-box">
+              <p class="tip-label">💡 Two routines at once</p>
+              <p>Up to two routines can run simultaneously. Each must be for a different child — the same child cannot appear in two active routines at the same time.</p>
+            </div>
+
+            <h3>Viewing parallel routines</h3>
+            <p>When two routines are active, the app shows both side by side. Each child's current task and countdown timer are displayed independently.</p>
+
+            <h3>Why can't the same child be in two routines?</h3>
+            <p>A child can only follow one routine at a time. If you try to start a second routine for the same child who already has an active routine, the app will not allow it. Stop the first routine before starting a new one for that child.</p>
+
+            <h3>Maximum active routines</h3>
+            <p>A maximum of two routines can run at the same time. To start a new routine when two are already active, one of the running routines must be stopped first.</p>
+          </section>
+
+          <!-- Quick Timer -->
+          <section id="quick-timer" aria-labelledby="h-quick-timer">
+            <h2 id="h-quick-timer">Quick Timer</h2>
+            <p>Quick Timer is a simple one-off countdown, accessible from the app navigation. It does not require a routine or a child profile.</p>
+
+            <h3>How to use Quick Timer</h3>
+            <ol>
+              <li>Open <strong>Quick Timer</strong> from the app navigation.</li>
+              <li>Select a preset duration.</li>
+              <li>Tap <strong>Start</strong> to begin the countdown.</li>
+              <li>Tap <strong>Pause</strong> to pause, or <strong>Reset</strong> to start again.</li>
+            </ol>
+          </section>
+
+          <!-- Data -->
+          <section id="data" aria-labelledby="h-data">
+            <h2 id="h-data">Your data</h2>
+
+            <h3>Where is data stored?</h3>
+            <p>All children's names, routines and tasks are stored locally on your device using standard iOS local storage. Nothing is sent to any server. This information is not transmitted to us or stored on our servers.</p>
+
+            <h3>Is there a cloud backup?</h3>
+            <p>No. Little Routine Timer does not use any cloud backup or sync. Your data exists only on the device where the app is installed. If you delete the app or clear the data, it cannot be recovered.</p>
+
+            <h3>How to clear all app data</h3>
+            <ol>
+              <li>Go to the <strong>Settings</strong> screen within the app.</li>
+              <li>Tap <strong>Clear App Data</strong>.</li>
+              <li>Confirm when prompted.</li>
+            </ol>
+            <div class="warning-box">
+              <p class="warning-label">⚠️ Important</p>
+              <p>Clear App Data removes all children, routines and tasks permanently. This cannot be undone. Deleting the app from your device has the same effect.</p>
+            </div>
+          </section>
+
+          <!-- Troubleshooting -->
+          <section id="troubleshooting" aria-labelledby="h-troubleshooting">
+            <h2 id="h-troubleshooting">Troubleshooting</h2>
+
+            <h3>The screen looks blank or shows outdated information</h3>
+            <p>Try closing and reopening the app. On iPhone or iPad, swipe up from the bottom of the screen (or double-press the Home button on older devices) to see open apps, swipe Little Routine Timer upward to close it, then reopen it from your Home screen.</p>
+
+            <h3>A routine I edited doesn't appear to have updated</h3>
+            <p>Make sure you tapped <strong>Save</strong> after making your changes. If the problem persists, close and reopen the app.</p>
+
+            <h3>The timer seems wrong after I switched apps</h3>
+            <p>Active routine timers continue to run in the background. If you returned to the app after a long pause, the timer may have continued counting down while the app was in the background.</p>
+
+            <h3>I can't start a second routine</h3>
+            <p>Check whether the same child is already in an active routine — a child can only be in one active routine at a time. Also check whether two routines are already running — the maximum is two at once.</p>
+
+            <h3>All my data has disappeared</h3>
+            <p>Data is stored locally on your device. If data has disappeared, it may have been removed by using Clear App Data, by deleting and reinstalling the app, or if your device's local storage was cleared. Because there is no remote backup, this data cannot be recovered.</p>
+          </section>
+
+          <!-- Contact -->
+          <section id="contact" aria-labelledby="h-contact">
+            <div class="contact-card">
+              <h2 id="h-contact">Still need help?</h2>
+              <p>If you have a question that isn't answered here, please get in touch.</p>
+              <a href="mailto:support@littleroutinetimer.com" aria-label="Email Little Routine Timer support">
+                ✉️ &nbsp; Email support
+              </a>
+              <p style="margin-top:16px; font-size:13px; color:rgba(255,255,255,0.7)">
+                When writing in, it helps to include your device model, your iOS or iPadOS version, and a brief description of the issue.
+              </p>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="back-home-bar">
+    <a href="/" aria-label="Return to the Little Routine Timer homepage">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <line x1="17" y1="10" x2="3" y2="10"/>
+        <polyline points="9 16 3 10 9 4"/>
+      </svg>
+      Back to homepage
+    </a>
+  </div>
+
+</body>
+</html>

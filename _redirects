@@ -1,0 +1,8 @@
+# _redirects — Cloudflare Pages
+# These rules serve clean URLs without .html extensions.
+# The 404 page is handled separately by Cloudflare Pages using the 404.html file;
+# do NOT add a catch-all redirect here or the real 404 page will never be shown.
+
+/privacy    /privacy.html    200
+/support    /support.html    200
+/terms      /terms.html      200

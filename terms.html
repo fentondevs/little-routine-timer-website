@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use | Little Routine Timer</title>
+  <meta name="description" content="Terms of Use for Little Routine Timer. A simple paid family routine app for iPhone and iPad.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Terms of Use | Little Routine Timer">
+  <meta property="og:description" content="Terms of Use for Little Routine Timer.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://littleroutinetimer.com/terms">
+
+  <link rel="canonical" href="https://littleroutinetimer.com/terms">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#5BB7B0">
+  <meta name="robots" content="index, follow">
+
+  <style>
+    :root {
+      --teal:       #5BB7B0;
+      --teal-dark:  #479B94;
+      --cream:      #FFF7EA;
+      --navy:       #1F2D3D;
+      --slate:      #6B7280;
+      --white:      #FFFFFF;
+      --shadow-sm:  0 2px 8px rgba(31,45,61,0.08);
+      --radius-md:  16px;
+      --radius-lg:  24px;
+      --font:       'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+      --transition: 0.2s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--cream);
+      color: var(--navy);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .site-header {
+      background: rgba(255,247,234,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(91,183,176,0.15);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo { width: 36px; height: 36px; border-radius: 9px; overflow: hidden; box-shadow: var(--shadow-sm); }
+    .nav-name { font-size: 14px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--teal);
+      text-decoration: none; padding: 8px 14px;
+      border-radius: 8px; transition: background var(--transition);
+    }
+    .back-link:hover { background: rgba(91,183,176,0.08); }
+    .back-link svg { width: 14px; height: 14px; }
+
+    /* Page hero */
+    .page-hero {
+      background: linear-gradient(160deg, var(--teal) 0%, #3A9B94 50%, var(--navy) 100%);
+      padding: 64px 0; text-align: center;
+    }
+    .page-hero h1 {
+      font-size: clamp(28px, 4vw, 42px); font-weight: 800;
+      color: var(--white); letter-spacing: -1px; margin-bottom: 10px;
+    }
+    .page-hero p {
+      font-size: 16px; color: rgba(255,255,255,0.8);
+      max-width: 500px; margin: 0 auto; line-height: 1.6;
+    }
+    .page-hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.15);
+      padding: 5px 14px; border-radius: 50px;
+      font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 20px; letter-spacing: 0.3px;
+    }
+
+    /* Draft notice */
+    .draft-notice {
+      background: rgba(255,199,66,0.15);
+      border: 1px solid rgba(255,199,66,0.4);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin: 32px 0 40px;
+      font-size: 14px;
+      color: #6B4A00;
+      line-height: 1.6;
+    }
+    .draft-notice strong { display: block; margin-bottom: 4px; }
+
+    /* Content */
+    .legal-content { padding: 56px 0 80px; }
+    .legal-effective {
+      font-size: 13px; color: var(--slate);
+      margin-bottom: 40px; padding-bottom: 20px;
+      border-bottom: 1px solid rgba(91,183,176,0.15);
+    }
+    .legal-content h2 {
+      font-size: 20px; font-weight: 700; color: var(--navy);
+      margin-top: 40px; margin-bottom: 12px;
+      padding-left: 16px;
+      border-left: 3px solid var(--teal);
+    }
+    .legal-content p {
+      font-size: 15px; line-height: 1.8; color: #374151; margin-bottom: 14px;
+    }
+    .legal-content ul {
+      padding-left: 0; list-style: none;
+      margin-bottom: 16px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .legal-content ul li {
+      font-size: 15px; line-height: 1.7; color: #374151;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .legal-content ul li::before {
+      content: '–'; color: var(--teal); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, rgba(91,183,176,0.08), rgba(91,183,176,0.04));
+      border-radius: var(--radius-md);
+      padding: 24px 28px; margin-top: 40px;
+      border: 1px solid rgba(91,183,176,0.2);
+    }
+    .contact-box p { margin-bottom: 8px; }
+    .contact-box a { color: var(--teal); text-decoration: underline; }
+    .contact-box a:hover { color: var(--teal-dark); }
+
+    .back-home-bar {
+      background: var(--white);
+      border-top: 1px solid rgba(91,183,176,0.12);
+      padding: 24px 0; text-align: center;
+    }
+    .back-home-bar a {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--teal);
+      text-decoration: none; padding: 10px 20px;
+      border-radius: 50px; border: 2px solid var(--teal);
+      transition: all var(--transition);
+    }
+    .back-home-bar a:hover { background: var(--teal); color: var(--white); }
+    .back-home-bar a svg { width: 14px; height: 14px; }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-brand" aria-label="Little Routine Timer — return to homepage">
+          <div class="nav-logo" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="tp-navbg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#5BB7B0"/>
+                  <stop offset="100%" stop-color="#596A9A"/>
+                </linearGradient>
+              </defs>
+              <rect width="200" height="200" rx="44" fill="url(#tp-navbg)"/>
+              <circle cx="100" cy="106" r="55" fill="rgba(255,255,255,0.9)"/>
+              <circle cx="100" cy="106" r="6.5" fill="#5BB7B0"/>
+              <circle cx="100" cy="106" r="3" fill="white"/>
+              <circle cx="148" cy="154" r="19" fill="#FF9F8A"/>
+              <path d="M139 154 L146.5 161.5 L159 147" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <span class="nav-name">Little Routine Timer</span>
+        </a>
+        <a href="/" class="back-link">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <line x1="17" y1="10" x2="3" y2="10"/>
+            <polyline points="9 16 3 10 9 4"/>
+          </svg>
+          Home
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="page-hero">
+      <div class="container">
+        <div class="page-hero-badge">📄 Legal</div>
+        <h1>Terms of Use</h1>
+        <p>Please read these terms before using Little Routine Timer.</p>
+      </div>
+    </div>
+
+    <div class="legal-content">
+      <div class="container">
+
+        <div class="draft-notice">
+          <strong>⚠️ Draft — requires legal review</strong>
+          These terms are draft website content and have not been reviewed by a legal professional. They should be reviewed and finalised by a qualified solicitor before the app's public launch.
+        </div>
+
+        <!-- [TERMS EFFECTIVE DATE]: insert effective date below -->
+        <p class="legal-effective">
+          Effective date: [TERMS EFFECTIVE DATE]<br>
+          Applies to: Little Routine Timer for iPhone and iPad
+        </p>
+
+        <h2>1. Agreement to these terms</h2>
+        <p>These Terms of Use ("Terms") govern your use of Little Routine Timer ("the App"), developed and published by Tom Fenton ("we", "us", "our"). By downloading or using the App, you agree to be bound by these Terms. If you do not agree, do not use the App.</p>
+
+        <h2>2. Licence to use the App</h2>
+        <p>Subject to these Terms, we grant you a non-exclusive, non-transferable, personal licence to use Little Routine Timer on devices that you own or control, for personal and family use only. This licence does not include any right to:</p>
+        <ul>
+          <li>Copy, modify, or create derivative works of the App</li>
+          <li>Distribute, sell, or sublicence the App</li>
+          <li>Reverse-engineer, decompile, or disassemble the App except as permitted by applicable law</li>
+          <li>Use the App for any commercial purpose</li>
+        </ul>
+
+        <h2>3. Personal and family use</h2>
+        <p>Little Routine Timer is intended for personal and family use. It is designed to be set up and operated by parents or guardians to help children follow daily routines. You remain responsible for how the App is used within your household and for all information entered into the App.</p>
+
+        <h2>4. No account or subscription</h2>
+        <p>The App does not require an account, registration, or sign-in. Little Routine Timer is a one-time paid download. There is no subscription and no in-app purchases.</p>
+
+        <h2>5. No guaranteed behavioural outcomes</h2>
+        <p>The App is a tool to assist with routine management. We make no representation, warranty, or guarantee that the App will change the behaviour of any child, achieve any particular outcome, or be suitable for every family situation. Results will vary between families and children.</p>
+
+        <h2>6. Parent and guardian responsibility</h2>
+        <p>Parents and guardians remain fully responsible for supervising their children at all times. The App does not supervise children, monitor safety, or replace parental judgement. The App is not a substitute for adult supervision.</p>
+
+        <h2>7. Not medical, therapeutic, or professional advice</h2>
+        <p>Little Routine Timer is not a medical, therapeutic, educational, or professional product. Nothing in the App or on this website constitutes medical advice, therapeutic guidance, educational advice, or any other professional advice. If you have concerns about a child's behaviour, development, or wellbeing, please consult a qualified professional.</p>
+
+        <h2>8. App availability and updates</h2>
+        <p>We will endeavour to keep the App available and to release updates from time to time. However, we do not guarantee uninterrupted availability. We reserve the right to modify, suspend, or discontinue the App or any feature of it at any time without notice. We are not liable for any interruption or discontinuation of the App.</p>
+
+        <h2>9. Intellectual property</h2>
+        <p>Little Routine Timer, including its name, logo, design, code, and content, is the intellectual property of Tom Fenton. All rights are reserved. Nothing in these Terms grants you any rights in or to the App other than the personal licence described in clause 2.</p>
+
+        <h2>10. Limitation of liability</h2>
+        <p>To the fullest extent permitted by applicable law:</p>
+        <ul>
+          <li>The App is provided "as is" without warranty of any kind, whether express or implied</li>
+          <li>We do not warrant that the App will be error-free, uninterrupted, or fit for any particular purpose</li>
+          <li>We shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the App</li>
+          <li>Our total liability to you for any claim arising from these Terms or your use of the App shall not exceed the amount you paid for the App</li>
+        </ul>
+        <p>Nothing in these Terms limits liability for fraud, death, or personal injury caused by our negligence, or any other liability that cannot be limited by law.</p>
+
+        <h2>11. Termination</h2>
+        <p>Your right to use the App ends immediately if you breach these Terms. We may also terminate or suspend your access to the App at our discretion. On termination, you must cease using the App and delete it from all devices.</p>
+
+        <h2>12. Governing law</h2>
+        <p>These Terms are governed by the laws of England and Wales. Any disputes arising from these Terms or your use of the App shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+        <h2>13. Changes to these Terms</h2>
+        <p>We may update these Terms from time to time. If we make material changes, we will update the effective date at the top of this page. Continued use of the App after any update constitutes your acceptance of the revised Terms.</p>
+
+        <h2>14. Contact us</h2>
+        <div class="contact-box">
+          <p>If you have any questions about these Terms, please contact:</p>
+          <p><strong>Tom Fenton</strong></p>
+          <p>Email: <a href="mailto:hello@littleroutinetimer.com">hello@littleroutinetimer.com</a></p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <div class="back-home-bar">
+    <a href="/" aria-label="Return to the Little Routine Timer homepage">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <line x1="17" y1="10" x2="3" y2="10"/>
+        <polyline points="9 16 3 10 9 4"/>
+      </svg>
+      Back to homepage
+    </a>
+  </div>
+
+</body>
+</html>
