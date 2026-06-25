@@ -52,29 +52,50 @@
 
     :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
 
+    /* Narrow container for legal body text */
     .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    /* Full-width container for header — matches homepage .container exactly */
     .header-container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-    /* Header */
+    /* ── HEADER — exact homepage values ─────────────────────────────── */
     .site-header {
-      background: rgba(255,247,234,0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255,247,234,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(91,183,176,0.15);
-      position: sticky; top: 0; z-index: 100;
     }
     .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       height: 68px;
     }
     .nav-brand {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none; flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
     }
     .nav-logo { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-sm); flex-shrink: 0; }
-    .nav-name { font-size: 15px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; line-height: 1.2; }
-    .nav-name span { display: block; font-size: 11px; font-weight: 500; color: var(--slate); letter-spacing: 0; }
-    @media (max-width: 480px) { .nav-name span { display: none; } }
+    .nav-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+    .nav-name span {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--slate);
+      letter-spacing: 0;
+    }
+    /* Back link — subpage only */
     .back-link {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 14px; font-weight: 600; color: var(--teal);
@@ -83,6 +104,7 @@
     }
     .back-link:hover { background: rgba(91,183,176,0.08); }
     .back-link svg { width: 14px; height: 14px; }
+    @media (max-width: 480px) { .nav-name span { display: none; } }
 
     /* Page hero */
     .page-hero {
@@ -167,28 +189,49 @@
 
 <body>
 
+  <!-- Header — exact homepage structure -->
   <header class="site-header" role="banner">
     <div class="header-container">
-      <div class="nav-inner">
-        <a href="/" class="nav-brand" aria-label="Little Routine Timer — return to homepage">
+      <nav class="nav-inner" aria-label="Main navigation">
+
+        <!-- Brand — exact homepage logo and brand block -->
+        <a href="/" class="nav-brand" aria-label="Little Routine Timer — home">
           <div class="nav-logo" aria-hidden="true">
             <svg width="40" height="40" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
               <defs>
                 <linearGradient id="tp-navbg" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
                   <stop offset="0%" stop-color="#5BB7B0"/>
+                  <stop offset="48%" stop-color="#4AA4A0"/>
                   <stop offset="100%" stop-color="#596A9A"/>
+                </linearGradient>
+                <linearGradient id="tp-navfc" x1="70" y1="48" x2="130" y2="162" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#FFFFFF"/>
+                  <stop offset="100%" stop-color="#EEF8F7"/>
                 </linearGradient>
               </defs>
               <rect width="200" height="200" rx="44" fill="url(#tp-navbg)"/>
-              <circle cx="100" cy="106" r="55" fill="rgba(255,255,255,0.9)"/>
+              <circle cx="35" cy="35" r="10.5" fill="#FFC742" opacity="0.95"/>
+              <path d="M170 16 A13 13 0 1 1 157 40 A8.5 8.5 0 1 0 170 16Z" fill="#FFF7EA" opacity="0.9"/>
+              <circle cx="100" cy="108" r="60" fill="rgba(20,38,60,0.13)"/>
+              <circle cx="100" cy="106" r="60" fill="url(#tp-navfc)"/>
+              <circle cx="100" cy="106" r="60" fill="none" stroke="rgba(91,183,176,0.18)" stroke-width="2.5"/>
+              <line x1="100" y1="49" x2="100" y2="56" stroke="#1F2D3D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              <line x1="157" y1="106" x2="150" y2="106" stroke="#1F2D3D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              <line x1="100" y1="163" x2="100" y2="156" stroke="#1F2D3D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+              <line x1="43" y1="106" x2="50" y2="106" stroke="#1F2D3D" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
               <circle cx="100" cy="106" r="6.5" fill="#5BB7B0"/>
               <circle cx="100" cy="106" r="3" fill="white"/>
-              <circle cx="148" cy="154" r="19" fill="#FF9F8A"/>
-              <path d="M139 154 L146.5 161.5 L159 147" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="155" cy="162" r="23" fill="white"/>
+              <circle cx="155" cy="162" r="19" fill="#FF9F8A"/>
+              <path d="M145 162 L152.5 169.5 L165.5 154" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </div>
-          <span class="nav-name">Little Routine Timer<span>Less nagging. Calmer routines.</span></span>
+          <div class="nav-name">
+            Little Routine Timer
+            <span>Less nagging. Calmer routines.</span>
+          </div>
         </a>
+
         <a href="/" class="back-link">
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <line x1="17" y1="10" x2="3" y2="10"/>
@@ -196,7 +239,8 @@
           </svg>
           Home
         </a>
-      </div>
+
+      </nav>
     </div>
   </header>
 
